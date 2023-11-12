@@ -1,0 +1,90 @@
+body {
+    background: #ffe6f2; /* Light Pink */
+    color: #cc0066; /* Dark Pink */
+    margin-top: 4rem; /* Slightly reduced margin */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #ff33cc; /* Pink Purple */
+  }
+  
+  ul {
+    list-style: none; /* No list bullets */
+  }
+  
+  .bg-steel {
+    background-color: #ff99cc; /* Light Pinkish Purple */
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #ffffff; /* Pinkish Purple */
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #a6175f; /* Dark Pink */
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 600; /* Slightly bolder */
+  }
+  
+  .content-section {
+    background: #ffd9eb; /* Light Pinkish Gray */
+    padding: 15px 25px; /* Increased padding */
+    border: 2px solid #808080; /* Grey */
+    border-radius: 5px;
+    margin-bottom: 25px; /* Increased margin */
+  }
+  
+  .article-title {
+    color: #ff66b2; /* Pinkish Purple */
+    border-bottom: 2px solid #808080; /* Grey line below the title */
+    padding-bottom: 8px; /* Increased padding */
+    margin-bottom: 15px; /* Increased margin */
+  }
+  
+  a.article-title:hover {
+    color: #ffb6c1; /* Light Pink on hover */
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  .article-content {
+    white-space: normal; /* Default white-space */
+  }
+  
+  .article-img {
+    height: 80px; /* Increased height */
+    width: 80px; /* Increased width */
+    margin-right: 20px; /* Increased margin */
+  }
+  
+  .article-metadata {
+    padding-bottom: 5px; /* Increased padding */
+    margin-bottom: 8px; /* Increased margin */
+    border-bottom: 2px solid #808080; /* Grey line below metadata */
+  }
+  
+  .article-metadata a:hover {
+    color: rgb(255, 168, 203); /* Pinkish Purple */
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  .article-svg {
+    width: 30px; /* Increased width */
+    height: 30px; /* Increased height */
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 150px; /* Increased height */
+    width: 150px; /* Increased width */
+    margin-right: 30px; /* Increased margin */
+    margin-bottom: 20px; /* Increased margin */
+  }
+  
+  .account-heading {
+    font-size: 3rem; 
+    border-bottom: 2px solid #ffe6f2; 
+    padding-bottom: 8px;
+    margin-bottom: 15px; 
+  }
