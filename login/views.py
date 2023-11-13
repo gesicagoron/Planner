@@ -10,4 +10,8 @@ def home(request):
 
 
 def about(request):
+<<<<<<< HEAD
     return render(request, 'login/about.html', {'title': 'About'})
+=======
+    return HttpResponse('<h1>About</h1>')
+>>>>>>> ee5acdddf3fd0a77fb772c0b80d37caf8af08ab6

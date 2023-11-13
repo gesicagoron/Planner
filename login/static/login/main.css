@@ -65,7 +65,15 @@ body {
   }
   
   .article-metadata a:hover {
+<<<<<<< HEAD
     color: rgb(255, 168, 203); /* Pinkish Purple */
+=======
+<<<<<<< HEAD
+    color: rgb(210, 46, 112); /* Pinkish Purple */
+=======
+    color: rgb(255, 168, 203); /* Pinkish Purple */
+>>>>>>> 5090acacecee90c49bd8be207879b860ed4c97c7
+>>>>>>> ee5acdddf3fd0a77fb772c0b80d37caf8af08ab6
     text-decoration: underline; /* Underline on hover */
   }
   
@@ -83,8 +91,21 @@ body {
   }
   
   .account-heading {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    font-size: 3rem; /* Slightly larger font size */
+    border-bottom: 2px solid #ffe6f2; /* Light Pink line below the username */
+    padding-bottom: 8px; /* Increased padding */
+    margin-bottom: 15px; /* Increased margin */
+=======
+>>>>>>> ee5acdddf3fd0a77fb772c0b80d37caf8af08ab6
     font-size: 3rem; 
     border-bottom: 2px solid #ffe6f2; 
     padding-bottom: 8px;
     margin-bottom: 15px; 
+<<<<<<< HEAD
+=======
+>>>>>>> 5090acacecee90c49bd8be207879b860ed4c97c7
+>>>>>>> ee5acdddf3fd0a77fb772c0b80d37caf8af08ab6
   }
