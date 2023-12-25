@@ -9,11 +9,9 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
     def __str__(self):
         return self.title
     
-
 class CustomUser(models.Model):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
@@ -25,5 +23,5 @@ class CustomUser(models.Model):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    def str(self):
+    def __str__(self):
         return self.username
