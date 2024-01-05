@@ -11,20 +11,29 @@ from .models import Post
 from django.shortcuts import get_object_or_404
 
 def home(request):
+    context = {
+        # You can add any additional context data for the home page here
+    }
+    return render(request, 'login/home.html', context)
+
+
+def post(request):
     posts_with_likes = Post.objects.annotate(like_count=Count('likes'))
 
     context = {
         'posts': Post.objects.all()
         
     }
-    return render(request, 'login/home.html', context)
+    return render(request, 'login/post.html', context)
 
 
 class PostListView(ListView):
     model = Post
-    template_name = 'login/home.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'login/post.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    def get_queryset(self):
+        return Post.objects.all()  
 
 
 class PostDetailView(DetailView):
