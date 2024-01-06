@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (
     home,
+    destinations,
     PostListView,
     PostDetailView,
     PostCreateView,
@@ -20,6 +21,7 @@ urlpatterns = [
     path('about/', views.about, name='login-about'),
     path('post/<int:pk>/like/', like_post, name='like-post'),
     path('posts/', PostListView.as_view(), name='login-post'), 
+    path('destinations/', views.destinations, name='login-destinations'),
 
 
 ]

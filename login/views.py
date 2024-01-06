@@ -17,6 +17,13 @@ def home(request):
     return render(request, 'login/home.html', context)
 
 
+def destinations(request):
+    context = {
+        # You can add any additional context data for the home page here
+    }
+    return render(request, 'login/destinations.html', context)
+
+
 def post(request):
     posts_with_likes = Post.objects.annotate(like_count=Count('likes'))
 
