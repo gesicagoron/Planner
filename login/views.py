@@ -100,3 +100,6 @@ def like_post(request, pk):
     else:
         post.likes.add(request.user)
     return redirect('post-detail', pk=pk)
+
+def task_list(request):
+    return render(request, 'login/task_list.html', {'title': 'Tasks'})
