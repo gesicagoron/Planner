@@ -7,9 +7,14 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+from .models import Post, Comment
 from django.shortcuts import get_object_or_404
 
+from django.urls import reverse
+from django.urls import reverse_lazy
 def home(request):
     context = {
         # You can add any additional context data for the home page here
@@ -50,10 +55,57 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         post = self.get_object()
         context['like_count'] = post.likes.count()
+        context['comments'] = Comment.objects.filter(post=post)
         return context
+    
+
+# Add a new view for handling comments
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.post = Post.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        # Redirect to the post detail page after successful form submission
+        return reverse('post-detail', kwargs={'pk': self.kwargs['pk']})
+# Modify your like_post view to include redirecting back to the post detail page
+def like_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+    return redirect('post-detail', pk=pk)
+
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['content']
+    template_name = 'login/comment_form.html'  # Create a new template for comment editing
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.object.post.pk})
 
 
+@login_required
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    
+    # Check if the user has permission to delete the comment
+    if request.user == comment.author:
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+    else:
+        messages.error(request, 'You do not have permission to delete this comment.')
 
+    return redirect('post-detail', pk=comment.post.pk)
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
