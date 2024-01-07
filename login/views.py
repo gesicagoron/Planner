@@ -144,14 +144,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'login/about.html', {'title': 'About'})
 
-
+@login_required
 def like_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if request.user in post.likes.all():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-    return redirect('post-detail', pk=pk)
 
-def task_list(request):
-    return render(request, 'login/task_list.html', {'title': 'Tasks'})
+    # Assuming the ForeignKey to CustomUser is named 'author' in your Post model
+    if request.user == post.author:
+        messages.error(request, 'You cannot like your own post.')
+    else:
+        # Check if the user has already liked the post
+        if request.user in post.likes.all():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+    return redirect('post-detail', pk=pk)
