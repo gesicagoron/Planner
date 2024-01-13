@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">  {# Corrected path to 'login/style.css' #}
+
+{% block content %}
+
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'users:calendar' %}?{{ prev_month }}">Previous Month</a>
+<a class="btn btn-info right" href="{% url 'users:calendar' %}?{{ next_month }}">Next Month</a>
+
+</div>
+
+
+    {{ calendar }}  {# This will display the calendar HTML generated in your view #}
+{% endblock %}
+
+{% block script %}
+    {# You can include any JavaScript here if needed #}
+{% endblock %}
