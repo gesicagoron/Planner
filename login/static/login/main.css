@@ -2,14 +2,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Mongolian Baiti', sans-serif; /* Change to Mongolian Baiti or a font of your choice */
+  font-family: 'Mongolian Baiti', sans-serif;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
+html, body {
   height: 100%;
 }
+
+.full-screen-bg {
+  position: relative; /* Needed for absolute positioning of children */
+  height: 100vh;
+  width: 100vw;
+}
+
+.background-image-container {
+  position: absolute; /* Position it absolutely to cover the entire parent */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.text-content-section {
+  flex: 1; /* Allows the section to grow as needed */
+  margin-right: 20px; /* Space between form and image */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 .container-fluid {
   padding: 0;
@@ -74,6 +99,80 @@ body, html {
   color: #555;
   margin-bottom: 15px; /* Add spacing between paragraphs */
 }
+
+
+
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: left;
+}
+
+.content-section legend {
+  margin-bottom: 20px;
+}
+
+.content-section form {
+  max-width: 400px; /* Adjust as needed */
+  margin: auto;
+}
+
+.content-section .form-group {
+  text-align: left;
+}
+
+.content-section .btn {
+  font-weight: bold;
+}
+
+.content-section .border-top {
+  margin-top: 20px;
+}
+
+.text-muted a {
+  font-weight: bold;
+}
+
+.content-section form, .text-content-section {
+  max-width: 400px;
+  margin: auto;
+  text-align: left;
+}
+
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjust the space between form and image */
+  width: 90%; /* Adjust the width as needed */
+  max-width: 900px;
+}
+
+.login-image-container {
+  flex: 0 1 30%; /* Adjust size of the image container */
+  max-width: 300px; /* Maximum width of the image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login-image-container img {
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
+
 /* Add styles for the team members if needed */
 .team-members {
   display: flex;
