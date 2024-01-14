@@ -1,6 +1,13 @@
 {% extends "login/base.html" %}
 {% block content %}
-    <!-- User Information -->
+<style>
+    body {
+      background: linear-gradient(to right, #dbceeb , #87cefa);
+      min-height: 100vh;
+      margin-top: 30px;
+      overflow-x: hidden;
+    }
+</style>
     <p>{{request.user}}</p>
 
     <!-- Container for Task List, Image and Itinerary List -->
@@ -17,12 +24,13 @@
             {% for task in tasks %}
                 <div style="height: 67px; background: #800080; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin-top: 15px;">
                     <p style="color: white;padding:5px">{{ task.title }}</p>
-                    <a href="{% url 'users:task-update' pk=task.pk %}" style="color: white; text-decoration: none;padding:5px">Edit</a>
-                    <form method="post" action="{% url 'users:task-delete' task.id %}">
+                    <a href="{% url 'users:users:task-update' pk=task.pk %}" style="color: white; text-decoration: none;padding:5px">Edit</a>
+                    <form method="post" action="{% url 'users:users:task-delete' task.id %}">
                         {% csrf_token %}
                         <button type="submit" style="background-color: transparent; color: red; border: none; cursor: pointer;padding:5px">Delete</button>
                     </form>
                     <form method="post" action="{% url 'users:task-update' pk=task.pk %}" onsubmit="return confirm('Task marked as complete: {{ task.title }}')">
+                    <form method="post" action="{% url 'users:task-update' pk=task.pk %}">
                         {% csrf_token %}
                         <input type="hidden" name="complete" value="True"> 
                         <button type="submit" style="background-color: transparent; color: green; border: none; cursor: pointer;padding:5px">Done</button>
@@ -31,7 +39,7 @@
             {% empty %}
                 <h3>No tasks yet.</h3>
             {% endfor %}
-            <a href="{% url 'users:task-create' %}" style="display: inline-block; margin-top: 20px; color: #800080; text-decoration: none; border: 2px solid purple; padding: 10px; border-radius: 30px;">Add Task</a>
+            <a href="{% url 'users:users:task-create' %}" style="display: inline-block; margin-top: 20px; color: #800080; text-decoration: none; border: 2px solid purple; padding: 10px; border-radius: 30px;">Add Task</a>
         </div>
 
         <!-- Image -->
@@ -49,7 +57,7 @@
             {% empty %}
                 <h3>No itineraries yet.</h3>
             {% endfor %}
-            <a href="{% url 'users:itinerary-create' %}" style="display: inline-block; margin-top: 20px; color: #800080; text-decoration: none; border: 2px solid purple; padding: 10px; border-radius: 30px;">Add Location</a>
+            <a href="{% url 'users:itinerary-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Location</a>
         </div>
         
     </div>
