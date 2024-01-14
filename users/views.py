@@ -80,7 +80,7 @@ class TaskListView(LoginRequiredMixin, ListView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title','complete']
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('users:task_list')
     
     def form_valid(self, form):
         form.instance.user=self.request.user
@@ -90,12 +90,12 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'tasks'
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('users:task_list')
     
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title','complete']
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('users:task_list')
 
 class CalendarView(ListView):
     model = Event
@@ -175,7 +175,7 @@ class ItineraryListView(LoginRequiredMixin, ListView):
 class ItineraryCreate(LoginRequiredMixin, CreateView):
     model = Itinerary
     fields = ['title']
-    success_url = reverse_lazy('itinerary_list')
+    success_url = reverse_lazy('users:itinerary_list')
     
     def form_valid(self, form):
         form.instance.user=self.request.user
@@ -185,5 +185,5 @@ class ItineraryCreate(LoginRequiredMixin, CreateView):
 class ItineraryUpdate(LoginRequiredMixin, UpdateView):
     model = Itinerary
     fields = ['title']
-    success_url = reverse_lazy('itinerary_list')
+    success_url = reverse_lazy('users:itinerary_list')
 

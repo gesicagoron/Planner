@@ -1,7 +1,7 @@
 {% extends "login/base.html" %}
 {% block content %}
 <h3>itinerary form</h1>
-<a href="{%url 'itinerary_list' %}">Go back</a>
+<a href="{%url 'users:itinerary_list' %}">Go back</a>
 <form method="POST" action="">
     {%csrf_token%}
     {{form.as_p}}
