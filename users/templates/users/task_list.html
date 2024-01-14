@@ -13,12 +13,12 @@
             {% for task in tasks %}
                 <div style="height: 67px; background: #002558; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
                     <p style="color: white;">{{ task.title }}</p>
-                    <a href="{% url 'task-update' pk=task.pk %}">Edit</a>
-                    <form method="post" action="{% url 'task-delete' task.id %}">
+                    <a href="{% url 'users:task-update' pk=task.pk %}">Edit</a>
+                    <form method="post" action="{% url 'users:task-delete' task.id %}">
                         {% csrf_token %}
                         <button type="submit">Delete</button>
                     </form>
-                    <form method="post" action="{% url 'task-update' pk=task.pk %}">
+                    <form method="post" action="{% url 'users:task-update' pk=task.pk %}">
                         {% csrf_token %}
                         <input type="hidden" name="complete" value="True"> 
                         <button type="submit">Mark as Complete</button>
@@ -27,7 +27,7 @@
             {% empty %}
                 <h3>No tasks yet.</h3>
             {% endfor %}
-            <a href="{% url 'task-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Item</a>
+            <a href="{% url 'users:task-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Item</a>
         </div>
 
         <!-- Itinerary List -->
@@ -40,7 +40,7 @@
             {% empty %}
                 <h3>No itineraries yet.</h3>
             {% endfor %}
-            <a href="{% url 'itinerary-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Location</a>
+            <a href="{% url 'users:itinerary-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Location</a>
         </div>
 
     </div>
