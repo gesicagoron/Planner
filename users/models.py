@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from .observers import TaskCompletionNotifier
+from .observers import TaskCompletionObserver
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+#from .models import Task
+
 
 
 class Profile(models.Model):
@@ -21,13 +27,15 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+from django.db import models
+from .observers import TaskCompletionNotifier, TaskCompletionObserver
+
 class Task(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True) 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) 
     title = models.CharField(max_length=200) 
-    description = models.TextField(null=True,blank=True)
     complete = models.BooleanField(default=False)
     create = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.title
     
@@ -43,3 +51,22 @@ class Event(models.Model):
     def get_html_url(self):
         url = reverse('users:event_edit', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'      
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        
+        if self.complete:
+            notifier = TaskCompletionNotifier()
+            notifier.attach(TaskCompletionObserver()) 
+            notifier.notify_observers(self)
+
+
+class Itinerary(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) 
+    title = models.CharField(max_length=200) 
+
+    def __str__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)

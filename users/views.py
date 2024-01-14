@@ -1,11 +1,20 @@
+from typing import Any
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.views.generic.list import ListView
-from .models import Task
+from .models import Task, Itinerary
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from .observers import TaskCompletionObserver
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+task_observer = TaskCompletionObserver()
+
 from django.views.generic import ListView
 
 from .models import *
@@ -56,24 +65,36 @@ def profile(request):
 
     return render(request, 'users/profile.html', context)
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
-    template_name = 'users/task_list.html'  # Replace with your template name
+    template_name = 'users/task_list.html'  
     context_object_name = 'tasks'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['itinerary'] = Itinerary.objects.filter(user=self.request.user)
+        return context
+
    
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = '__all__'
+    fields = ['title','complete']
     success_url = reverse_lazy('task_list')
     
-class TaskUpdate(UpdateView):
-    model = Task
-    fields = '__all__'
-    success_url = reverse_lazy('task_list')
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        return super(TaskCreate,self).form_valid(form)
     
-class DeleteView(DeleteView):
+    
+class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'tasks'
+    success_url = reverse_lazy('task_list')
+    
+class TaskUpdate(LoginRequiredMixin, UpdateView):
+    model = Task
+    fields = ['title','complete']
     success_url = reverse_lazy('task_list')
 
 class CalendarView(ListView):
@@ -130,3 +151,39 @@ def event(request, event_id=None):
         form.save()
         return HttpResponseRedirect(reverse('users:calendar'))
     return render(request, 'users/event.html', {'form': form})
+
+    def form_valid(self, form):
+        if 'complete' in self.request.POST:
+            task = form.save(commit=False)
+            task.complete = True
+            task.save()
+        else:
+            form.save()
+        return super().form_valid(form)
+    
+class ItineraryListView(LoginRequiredMixin, ListView):
+    model = Itinerary
+    template_name = 'users/task_list.html'  
+    context_object_name = 'itinerary'
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['itinerary']=context['itinerary'].filter(user=self.request.user)
+        return context
+
+
+class ItineraryCreate(LoginRequiredMixin, CreateView):
+    model = Itinerary
+    fields = ['title']
+    success_url = reverse_lazy('itinerary_list')
+    
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        return super(ItineraryCreate,self).form_valid(form)
+    
+    
+class ItineraryUpdate(LoginRequiredMixin, UpdateView):
+    model = Itinerary
+    fields = ['title']
+    success_url = reverse_lazy('itinerary_list')
+

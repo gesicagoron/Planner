@@ -1,22 +1,47 @@
 {% extends "login/base.html" %}
+
 {% block content %}
-<h1>Task List</h1>
-<table>
-    <tr>
-        <th>Item</th>
-        <th></th>
-        <th></th>
-    </tr>
-    {% for task in tasks %}
-    <tr>
-        <td>{{ task.title }}</td>
-        <td><a href="{%url 'users:task_list'%}"></a></td>
-        <td><a href="{% url 'users:task-update' pk=task.pk %}">Edit</a></td>
-        <td><a href="{% url 'users:task-delete' task.id %}">Delete</a></td>
-    </tr>
-    {% empty %}
-        <h3>No tasks yet.</h3>
-    {% endfor %}
-</table>
-<a href ="{%url 'users:task-create' %}">Add Item </a>
+    <!-- User Information -->
+    <p>{{request.user}}</p>
+
+    <!-- Container for Task List and Itinerary List -->
+    <div style="display: flex; justify-content: center; align-items: start; gap: 20px; padding: 20px;">
+
+        <!-- Task List -->
+        <div style="width: 321px; height: 437px;">
+            <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">YOUR TO DO LIST</div>
+            {% for task in tasks %}
+                <div style="height: 67px; background: #002558; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                    <p style="color: white;">{{ task.title }}</p>
+                    <a href="{% url 'task-update' pk=task.pk %}">Edit</a>
+                    <form method="post" action="{% url 'task-delete' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form method="post" action="{% url 'task-update' pk=task.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="complete" value="True"> 
+                        <button type="submit">Mark as Complete</button>
+                    </form>
+                </div>
+            {% empty %}
+                <h3>No tasks yet.</h3>
+            {% endfor %}
+            <a href="{% url 'task-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Item</a>
+        </div>
+
+        <!-- Itinerary List -->
+        <div style="width: 321px; height: 437px;">
+            <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">YOUR ITINERARY</div>
+            {% for item in itinerary %}
+                <div style="height: 67px; background: #002558; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                    <p style="color: white;">{{ item.title }}</p>
+                </div>
+            {% empty %}
+                <h3>No itineraries yet.</h3>
+            {% endfor %}
+            <a href="{% url 'itinerary-create' %}" style="display: inline-block; margin-top: 20px; color: #2196F3; text-decoration: none;">Add Location</a>
+        </div>
+
+    </div>
 {% endblock content %}
