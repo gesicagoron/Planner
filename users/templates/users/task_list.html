@@ -10,13 +10,13 @@
     {% for task in tasks %}
     <tr>
         <td>{{ task.title }}</td>
-        <td><a href="{%url 'task_list'%}"></a></td>
-        <td><a href="{% url 'task-update' pk=task.pk %}">Edit</a></td>
-        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
+        <td><a href="{%url 'users:task_list'%}"></a></td>
+        <td><a href="{% url 'users:task-update' pk=task.pk %}">Edit</a></td>
+        <td><a href="{% url 'users:task-delete' task.id %}">Delete</a></td>
     </tr>
     {% empty %}
         <h3>No tasks yet.</h3>
     {% endfor %}
 </table>
-<a href ="{%url 'task-create' %}">Add Item </a>
+<a href ="{%url 'users:task-create' %}">Add Item </a>
 {% endblock content %}
