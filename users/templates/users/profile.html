@@ -2,58 +2,139 @@
 {% load crispy_forms_tags %}
 
 {% block sidebar %}
-  {# Empty block to exclude the sidebar #}
+{# Empty block to exclude the sidebar #}
 {% endblock sidebar %}
 
 {% block content %}
-  <div class="content-section">
-    <div class="media">
-      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-      <div class="media-body">
-        <h2 class="account-heading">{{ user.username }}</h2>
-        <p class="text-secondary">{{ user.email }}</p>
+<style>
+  html,
+  body {
+    overflow: hidden;
+    /* Prevent scrolling */
+  }
+
+  .background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #A8C2DB;
+    z-index: -1;
+    /* Ensure the background is behind other elements */
+  }
+
+  .media {
+    position: relative;
+    /* Other styles... */
+  }
+
+  .account-info {
+    text-align: left;
+    margin-top: -100px;
+  }
+
+  .account-info h2 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  .account-info p {
+    font-size: 30px;
+  }
+
+
+  .account-img {
+    position: absolute;
+    top: 50px;
+    /* Adjust this value to move the image higher */
+    left: -300px;
+    /* Adjust this value to move the image to the left */
+    margin-top: -350px;
+    /* Negative value to move it higher */
+    margin-left: -100px;
+    /* Negative value to move it to the left */
+  }
+
+  .edit-profile-btn {
+    position: absolute;
+    top: 40%;
+    left: -90%;
+    transform: translate(-50%, 0);
+    margin-top: 20px;
+    /* Adjust the margin as needed */
+  }
+
+  .user-posts {
+    margin-top: 20px;
+    /* Adjust the margin as needed */
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .user-posts a {
+    text-decoration: none;
+    color: #333;
+  }
+</style>
+
+
+<div class="background-container"></div>
+
+<div class="content-section">
+  <div class="account-info">
+    <h2>{{ user.username }}</h2>
+    <p class="text-secondary">{{ user.email }}</p>
+  </div>
+
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <button type="button" class="btn btn-outline-info edit-profile-btn" data-toggle="modal"
+        data-target="#updateProfileModal">
+        Edit Profile
+      </button>
+
+
+      <div class="user-posts">
+        <h2>User's Posts:</h2>
+        <ul>
+          {% for post in user.post_set.all %}
+          <li><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
+  </div>
 
-    <!-- Button to trigger the modal -->
-    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#updateProfileModal">
-      Edit Profile
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-              </fieldset>
-              <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-              </div>
-            </form>
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog" aria-labelledby="updateProfileModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-   
- 
-
   </div>
-  <h2 class="mt-4">User's Posts:</h2>
-  <ul>
-    {% for post in user.post_set.all %}
-      <li><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+</div>
+
 {% endblock content %}
