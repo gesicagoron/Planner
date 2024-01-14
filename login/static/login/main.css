@@ -4,11 +4,13 @@
   box-sizing: border-box;
   font-family: 'Mongolian Baiti', sans-serif;
   font-family: 'Mongolian Baiti', sans-serif;
+  
 }
 
 html, body {
 html, body {
   height: 100%;
+  
 }
 
 .full-screen-bg {
