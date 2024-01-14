@@ -20,11 +20,12 @@ html, body {
 }
 
 .background-image-container {
-  position: absolute; /* Position it absolutely to cover the entire parent */
+  position: relative; /* Position it absolutely to cover the entire parent */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  height: 120%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -261,24 +262,6 @@ html, body {
   width: 90%; /* Adjust the width as needed */
   max-width: 900px;
 }
-
-.login-image-container {
-  flex: 0 1 30%; /* Adjust size of the image container */
-  max-width: 300px; /* Maximum width of the image */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.login-image-container img {
-  max-width: 100%;
-  max-height: 300px;
-  height: auto;
-  object-fit: contain;
-}
-
-
 
 
 /* Add styles for the team members if needed */
