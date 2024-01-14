@@ -1,53 +1,80 @@
 {% extends "login/base.html" %}
 {% block content %}
-    <div style="width: 100%; height: 100%; position: center">
-        <div style="width: 500px; height: 492px; left: 150px; top: 115px; position: absolute">
-            <div style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 199px; top: 35px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">VENICE</div>
-            </div>
-            <div style="width: 500px; height: 101px; left: 0px; top: 131px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">BARCELONA</div>
-            </div>
-            <div style="width: 500px; height: 101px; left: 0px; top: 262px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 148px; top: 37px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">NEW ZEALAND</div>
-            </div>
-            <div style="width: 500px; height: 101px; left: 0px; top: 392px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">BARCELONA</div>
-            </div>
+<div style="width: 100%; height: 100%; position: center">
+    <div style="width: 500px; height: 492px; left: 150px; top: 115px; position: absolute">
+        <div style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 199px; top: 35px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                VENICE</div>
         </div>
-        <div style="width: 60px; height: 60px; left: 700px; top: 630px; position: absolute; background: rgba(0, 37, 88, 0.42)"></div>
-        <div style="width: 500px; height: 492px; left: 800px; top: 115px; position: absolute">
-            <div style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 199px; top: 35px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">VENICE</div>
-            </div>
-            <div style="width: 500px; height: 101px; left: 0px; top: 131px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">BARCELONA</div>
-            </div>
-            <a href="http://127.0.0.1:8000/task_list">
-                <button class="custom-button" style="width: 205px; height: 67px; left: 45px; top: 408px; position: absolute; z-index: 2;">
-                    MAKE YOUR OWN ITINERARY
-                </button>
-            </a>
-            <a href="http://127.0.0.1:8000/task_list">
-             <button class="custom-button" style="width: 205px; height: 67px; left: 265px; top: 408px; position: absolute; z-index: 2;">
+        <div style="width: 500px; height: 101px; left: 0px; top: 131px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                BARCELONA</div>
+        </div>
+        <div style="width: 500px; height: 101px; left: 0px; top: 262px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 148px; top: 37px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                NEW ZEALAND</div>
+        </div>
+        <div style="width: 500px; height: 101px; left: 0px; top: 392px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                BARCELONA</div>
+        </div>
+    </div>
+    <div
+        style="width: 60px; height: 60px; left: 700px; top: 630px; position: absolute; background: rgba(0, 37, 88, 0.42)">
+    </div>
+    <div style="width: 500px; height: 492px; left: 800px; top: 115px; position: absolute">
+        <div style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 199px; top: 35px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                VENICE</div>
+        </div>
+        <div style="width: 500px; height: 101px; left: 0px; top: 131px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 164px; top: 36px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                BARCELONA</div>
+        </div>
+        <a href="http://127.0.0.1:8000/task_list">
+            <button class="custom-button"
+                style="width: 205px; height: 67px; left: 45px; top: 408px; position: absolute; z-index: 2;">
+                MAKE YOUR OWN ITINERARY
+            </button>
+        </a>
+        <a href="http://127.0.0.1:8000/task_list">
+            <button class="custom-button"
+                style="width: 205px; height: 67px; left: 265px; top: 408px; position: absolute; z-index: 2;">
                 MAKE YOUR TO-DO LIST
-             </button>
-            </a>
-            <div style="width: 500px; height: 101px; left: 1px; top: 262px; position: absolute">
-                <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid" src="https://via.placeholder.com/500x101" />
-                <div style="left: 148px; top: 37px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">NEW ZEALAND</div>
-            </div>
+            </button>
+        </a>
+        <div style="width: 500px; height: 101px; left: 1px; top: 262px; position: absolute">
+            <img style="width: 500px; height: 101px; left: 0px; top: 0px; position: absolute; border-radius: 22.5px; border: 2px white solid"
+                src="https://via.placeholder.com/500x101" />
+            <div
+                style="left: 148px; top: 37px; position: absolute; text-align: center; color: white; font-size: 30px; font-family: Roboto; font-weight: 300; line-height: 38.40px; word-wrap: break-word">
+                NEW ZEALAND</div>
         </div>
-        <div style="padding-left: 17px; padding-right: 26px; left: 300px; top: 38px; position: absolute; justify-content: flex-start; align-items: center; gap: 478px; display: inline-flex">
-            <img style="width: 107px; height: 46px" src="https://via.placeholder.com/107x46" />
-            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 33px; display: inline-flex">
-                <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+    </div>
+    <div
+        style="padding-left: 17px; padding-right: 26px; left: 300px; top: 38px; position: absolute; justify-content: flex-start; align-items: center; gap: 478px; display: inline-flex">
+        <img style="width: 107px; height: 46px" src="https://via.placeholder.com/107x46" />
+        <div
+            style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 33px; display: inline-flex">
+            <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
             </div>
         </div>
 
@@ -62,9 +89,8 @@
                     <p id="description"></p>
                 </div>
             </div>
-<<<<<<< HEAD
             <script>
-                const apiKey = '7dfa37a25f06f4490cb280042dc85929';
+                const apiKey = '9a4f5f09bdb26c76b223b9ee1a5be2ff';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 const locationInput = document.getElementById('locationInput');
@@ -81,13 +107,13 @@ searchButton.addEventListener('click', () => {
 });
 
 function fetchWeather(location) {
-    const url = ${apiUrl}?q=${location}&appid=${apiKey}&units=metric;
+    const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
             locationElement.textContent = data.name;
-            temperatureElement.textContent = ${Math.round(data.main.temp)}°C;
+            temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
             descriptionElement.textContent = data.weather[0].description;
         })
         .catch(error => {
@@ -96,12 +122,6 @@ function fetchWeather(location) {
 }
             </script>
         </body>
-
-=======
-            <script src="script.js"></script>
-        </body>
-        
->>>>>>> 2d6778baffe248fd4adb120f7d43238b5fb9b78b
     </div>
 
-{% endblock content %}
+    {% endblock content %}
