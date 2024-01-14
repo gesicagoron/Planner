@@ -17,16 +17,22 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 def home(request):
     context = {
-        # You can add any additional context data for the home page here
     }
     return render(request, 'login/home.html', context)
 
 
 def destinations(request):
     context = {
-        # You can add any additional context data for the home page here
     }
     return render(request, 'login/destinations.html', context)
+
+
+def about(request):
+    context = {
+        
+    }
+    return render(request, 'login/about.html', context)
+
 
 
 def post(request):
@@ -37,6 +43,7 @@ def post(request):
         
     }
     return render(request, 'login/post.html', context)
+    
 
 
 class PostListView(ListView):
