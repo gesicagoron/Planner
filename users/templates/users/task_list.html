@@ -1,7 +1,14 @@
 {% extends "login/base.html" %}
 
 {% block content %}
-    <!-- User Information -->
+<style>
+    body {
+      background: linear-gradient(to right, #dbceeb , #87cefa);
+      min-height: 100vh;
+      margin-top: 30px;
+      overflow-x: hidden;
+    }
+</style>
     <p>{{request.user}}</p>
 
     <!-- Container for Task List and Itinerary List -->
