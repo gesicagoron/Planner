@@ -65,7 +65,7 @@
                     <p id="description"></p>
                 </div>
             </div>
-            <!-- <script>
+            <script>
                 const apiKey = '9a4f5f09bdb26c76b223b9ee1a5be2ff';
                 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
@@ -83,21 +83,13 @@
                 });
 
                 function fetchWeather(location) {
-<<<<<<< HEAD
                     const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`; // Corrected template literal syntax
-=======
-                    const url = ${ apiUrl }?q = ${ location }& appid=${ apiKey }& units=metric; // Corrected template literal syntax
->>>>>>> 06d43bf7bda9bac59033b7bb482e05c1eef4c5a9
 
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
                             locationElement.textContent = data.name;
-<<<<<<< HEAD
                             temperatureElement.textContent = `${Math.round(data.main.temp)}°C`; // Corrected template literal syntax
-=======
-                            temperatureElement.textContent = ${ Math.round(data.main.temp) }°C; // Corrected template literal syntax
->>>>>>> 06d43bf7bda9bac59033b7bb482e05c1eef4c5a9
                             descriptionElement.textContent = data.weather[0].description;
                         })
                         .catch(error => {
@@ -144,7 +136,6 @@
                     }
                 });
                 function fetchConversionRate(baseCurrency, targetCurrency, amount) {
-<<<<<<< HEAD
     const url1 = `${apiUrl1}&base_currency=${baseCurrency}&currencies=${baseCurrency},${targetCurrency}`;
 
     fetch(url1)
@@ -170,34 +161,6 @@
 }
 
             </script>
-=======
-                    const url1 = ${ apiUrl1 }& base_currency=${ baseCurrency }& currencies=${ baseCurrency },${ targetCurrency };
-
-                    fetch(url1)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(HTTP error! status: ${ response.status });
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (!data.data || !data.data[targetCurrency]) {
-                                throw new Error("Conversion rate not found for the specified currency.");
-                            }
-                            const rate = data.data[targetCurrency].value;
-                            const convertedAmount = rate * amount;
-                            baseElement.textContent = ${ amount } ${ baseCurrency } is equal to;
-                            convertedAmountElement.textContent = ${ convertedAmount.toFixed(2) } ${ targetCurrency };
-                        })
-                        .catch(error => {
-                            console.error('Error fetching conversion rate:', error);
-                            alert(error.message);
-                        });
-                }
-
-
-            </script> -->
->>>>>>> 06d43bf7bda9bac59033b7bb482e05c1eef4c5a9
         </body>
     </div>
 
